@@ -15,11 +15,11 @@ class CameraDataProviderServiceTest {
 	@Autowired
     private CameraDtoProviderService cameraDtoProviderService;
 	
-	@Sql(scripts = "classpath:camerasForTests.sql")
+	
 	@Test
 	void testGetCameraData() {
         CameraDto expected = new CameraDto(12345L, "Herzel 6 Tel-Aviv", 100.0);
-        CameraDto actual = cameraDtoProviderService.getCameraData(1L);
+        CameraDto actual = cameraDtoProviderService.getCameraData(12345L);
         assertEquals(expected, actual);
         
     }
