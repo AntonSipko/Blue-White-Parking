@@ -23,6 +23,7 @@
     <modules>
    
         <module>camera-imitator</module>
+        <module>camera-provider</module>
     </modules>
 
     <dependencyManagement>
