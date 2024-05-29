@@ -14,17 +14,9 @@ import telran.parking.exceptions.*;
 class CameraDataProviderServiceTest {
 	@Autowired
     private CameraDtoProviderService cameraDtoProviderService;
-
-    @Autowired
-    private CameraDataRepo cameraDataRepo;
-
-    @BeforeEach
-    void setUp() {
-        cameraDataRepo.deleteAll();
-    }
 	
-	@Test
 	@Sql(scripts = "classpath:camerasForTests.sql")
+	@Test
 	void testGetCameraData() {
         CameraDto expected = new CameraDto(12345L, "Herzel 6 Tel-Aviv", 100.0);
         CameraDto actual = cameraDtoProviderService.getCameraData(1L);

@@ -1,7 +1,9 @@
 package telran.parking.service;
 import telran.parking.repo.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +13,9 @@ import telran.parking.model.CameraData;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional(readOnly=true)
 public class CameraDtoProviderServiceImpl implements CameraDtoProviderService {
+	@Autowired
 	CameraDataRepo cameraDataRepo;
 
 	@Override
