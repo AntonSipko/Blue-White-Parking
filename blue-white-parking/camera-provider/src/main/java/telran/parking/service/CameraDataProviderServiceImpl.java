@@ -14,7 +14,7 @@ import telran.parking.model.CameraData;
 @RequiredArgsConstructor
 @Slf4j
 @Transactional(readOnly=true)
-public class CameraDtoProviderServiceImpl implements CameraDtoProviderService {
+public class CameraDataProviderServiceImpl implements CameraDataProviderService {
 	@Autowired
 	CameraDataRepo cameraDataRepo;
 

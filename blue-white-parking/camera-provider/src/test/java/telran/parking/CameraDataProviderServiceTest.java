@@ -8,12 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import telran.parking.dto.*;
 import telran.parking.repo.CameraDataRepo;
-import telran.parking.service.CameraDtoProviderService;
+import telran.parking.service.CameraDataProviderService;
 import telran.parking.exceptions.*;
 @SpringBootTest
 class CameraDataProviderServiceTest {
 	@Autowired
-    private CameraDtoProviderService cameraDtoProviderService;
+    private CameraDataProviderService cameraDtoProviderService;
 	
 	
 	@Test
