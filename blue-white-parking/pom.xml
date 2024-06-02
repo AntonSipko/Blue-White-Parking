@@ -24,6 +24,7 @@
    
         <module>camera-imitator</module>
         <module>camera-provider</module>
+        <module>owner-data-provider</module>
     </modules>
 
     <dependencyManagement>
