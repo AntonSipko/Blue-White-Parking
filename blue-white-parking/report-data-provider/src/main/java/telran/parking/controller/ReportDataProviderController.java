@@ -18,8 +18,8 @@ public class ReportDataProviderController {
 	@Autowired
 	ReportDataProviderService reportDataProviderService;
 	
-	 @GetMapping(UrlConstants.GET_REPORTS_URL + "{" + UrlConstants.OWNER_ID + "}")
-	public ReportDto getCameraData(@PathVariable(UrlConstants.OWNER_ID)  String carNumber) {
+	 @GetMapping(UrlConstants.GET_REPORTS_URL + "{" + UrlConstants.CAR_NUMBER + "}")
+	public ReportDto getCameraData(@PathVariable(UrlConstants.CAR_NUMBER)  String carNumber) {
 		log.debug("Searching Data for Owner with ID : {}",carNumber);
 		return reportDataProviderService.getReportData(carNumber);
 		

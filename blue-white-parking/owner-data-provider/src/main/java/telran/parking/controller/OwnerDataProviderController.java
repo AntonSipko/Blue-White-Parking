@@ -14,12 +14,12 @@ import telran.parking.service.OwnerDataProviderService;
 @RequiredArgsConstructor
 @Slf4j
 
-public class CameraDataProviderController {
+public class OwnerDataProviderController {
 	@Autowired
 	OwnerDataProviderService ownerDataProviderService;
 	
 	 @GetMapping(UrlConstants.GET_OWNERS_URL + "{" + UrlConstants.OWNER_ID + "}")
-	public OwnerDto getCameraData(@PathVariable(UrlConstants.OWNER_ID)  long ownerId) {
+	public OwnerDto getOwnerData(@PathVariable(UrlConstants.OWNER_ID)  long ownerId) {
 		log.debug("Searching Data for Owner with ID : {}",ownerId);
 		return ownerDataProviderService.getOwnerData(ownerId);
 		
