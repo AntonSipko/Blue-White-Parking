@@ -14,14 +14,14 @@ import telran.parking.service.ReportDataProviderService;
 @RequiredArgsConstructor
 @Slf4j
 
-public class CameraDataProviderController {
+public class ReportDataProviderController {
 	@Autowired
 	ReportDataProviderService reportDataProviderService;
 	
 	 @GetMapping(UrlConstants.GET_REPORTS_URL + "{" + UrlConstants.OWNER_ID + "}")
-	public OwnerDto getCameraData(@PathVariable(UrlConstants.OWNER_ID)  long ownerId) {
-		log.debug("Searching Data for Owner with ID : {}",ownerId);
-		return reportDataProviderService.getReportData(ownerId);
+	public ReportDto getCameraData(@PathVariable(UrlConstants.OWNER_ID)  String carNumber) {
+		log.debug("Searching Data for Owner with ID : {}",carNumber);
+		return reportDataProviderService.getReportData(carNumber);
 		
 		
 		

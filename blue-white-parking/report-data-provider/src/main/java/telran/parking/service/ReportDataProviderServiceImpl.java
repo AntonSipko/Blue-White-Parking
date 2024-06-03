@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import telran.parking.dto.OwnerDto;
 import telran.parking.dto.ReportDto;
-import telran.parking.exceptions.OwnerNotFoundException;
 import telran.parking.exceptions.ReportNotFoundException;
-import telran.parking.model.OwnerData;
 import telran.parking.model.ReportData;
 @Service
 @RequiredArgsConstructor
@@ -19,11 +17,11 @@ import telran.parking.model.ReportData;
 @Transactional(readOnly=true)
 public class ReportDataProviderServiceImpl implements ReportDataProviderService {
 	@Autowired
-	OwnerDataRepo reportDataRepo;
+	ReportDataRepo reportDataRepo;
 
 	@Override
-	public ReportDto getReportData(long ownerId) {
-		ReportData reportData =reportDataRepo.findById(ownerId).orElseThrow(() -> new ReportNotFoundException());
+	public ReportDto getReportData(String carNumber) {
+		ReportData reportData =reportDataRepo.findById(carNumber).orElseThrow(() -> new ReportNotFoundException());
 		return reportData.buid();
 	
 		
