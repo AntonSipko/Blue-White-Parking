@@ -21,11 +21,13 @@ public class ReportData {
 	String cameraAdress;
 	@Column(name="adress_fine_price")
 	double adressFinePrice;
+	@Column(name="fine_status")
 	@Enumerated(EnumType.STRING)
 	@Setter
 	FineStatus fineStatus;
+	@Column(name="timestamp")
 	@Temporal(TemporalType.TIMESTAMP)
-	LocalDateTime timestamp;
+	LocalDateTime timeStamp;
 	@Column(name="owner_id")
 	long ownerId;
 	@Column(name="owner_name")
@@ -35,7 +37,7 @@ public class ReportData {
 	
 	
 	public ReportDto buid() {
-		return new ReportDto(carNumber,cameraId,cameraAdress,timestamp,ownerId,ownerEmail,adressFinePrice,fineStatus,ownerName);
+		return new ReportDto(carNumber,cameraId,cameraAdress,timeStamp,ownerId,ownerEmail,adressFinePrice,fineStatus,ownerName);
 		
 	}
 
