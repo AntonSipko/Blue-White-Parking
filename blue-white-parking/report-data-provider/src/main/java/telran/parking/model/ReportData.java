@@ -22,6 +22,7 @@ public class ReportData {
 	@Column(name="adress_fine_price")
 	double adressFinePrice;
 	@Enumerated(EnumType.STRING)
+	@Setter
 	FineStatus fineStatus;
 	@Temporal(TemporalType.TIMESTAMP)
 	LocalDateTime timestamp;
