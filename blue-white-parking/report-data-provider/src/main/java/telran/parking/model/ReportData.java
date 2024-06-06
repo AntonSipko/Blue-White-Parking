@@ -34,8 +34,6 @@ public class ReportData {
 	String ownerName;
 	@Column(name="owner_email")
 	String ownerEmail;
-	
-	
 	public ReportDto buid() {
 		return new ReportDto(carNumber,cameraId,cameraAdress,timeStamp,ownerId,ownerEmail,adressFinePrice,fineStatus,ownerName);
 		

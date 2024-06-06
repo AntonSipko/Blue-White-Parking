@@ -1,16 +1,15 @@
 package telran.parking.service;
 import telran.parking.repo.*;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import telran.parking.dto.OwnerDto;
-import telran.parking.dto.ReportDto;
-import telran.parking.exceptions.ReportNotFoundException;
-import telran.parking.model.ReportData;
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -20,12 +19,16 @@ public class ReportDataProviderServiceImpl implements ReportDataProviderService 
 	ReportDataRepo reportDataRepo;
 
 	@Override
-	public ReportDto getReportData(String carNumber) {
-		ReportData reportData =reportDataRepo.findById(carNumber).orElseThrow(() -> new ReportNotFoundException());
-		return reportData.buid();
+	public boolean isReportExists(String carNumber) {
+		LocalDateTime startOfDay = LocalDateTime.now().with(LocalTime.MIN);
+        LocalDateTime endOfDay = LocalDateTime.now().with(LocalTime.MAX);
+        return reportDataRepo.existsReportForToday(carNumber, startOfDay, endOfDay);
+	}
+
+
+		
 	
 		
 	}
 	
 
-}
