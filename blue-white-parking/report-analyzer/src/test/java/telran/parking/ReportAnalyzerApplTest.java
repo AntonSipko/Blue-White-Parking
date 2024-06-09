@@ -1,5 +1,6 @@
 package telran.parking;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -32,9 +33,10 @@ class ReportAnalyzerApplTest {
     }
 
     @Test
-    void testProcessParkingDto_reportExists() {
+    void testProcessParkingDto_allReportsExist() {
         // Given
-        ParkingDto parkingDto = new ParkingDto(123L, "A1", "25-365-28", LocalDateTime.now());
+        String[] carNumbers = {"ABC123", "XYZ789", "LMN456"};
+        ParkingDto parkingDto = new ParkingDto(123L, carNumbers, LocalDateTime.now());
         when(reportExistsProviderClientService.reportExistsForToday(anyString())).thenReturn(true);
 
         // When
@@ -42,18 +44,39 @@ class ReportAnalyzerApplTest {
 
         // Then
         verify(streamBridge, never()).send(anyString(), any(ParkingDto.class));
+        verify(reportExistsProviderClientService, times(carNumbers.length)).reportExistsForToday(anyString());
     }
 
     @Test
-    void testProcessParkingDto_reportDoesNotExist() {
+    void testProcessParkingDto_someReportsDoNotExist() {
         // Given
-        ParkingDto parkingDto = new ParkingDto(123L, "A1", "25-365-28", LocalDateTime.now());
-        when(reportExistsProviderClientService.reportExistsForToday(anyString())).thenReturn(false);
+        String[] carNumbers = {"ABC123", "XYZ789", "LMN456"};
+        ParkingDto parkingDto = new ParkingDto(123L, carNumbers, LocalDateTime.now());
+        when(reportExistsProviderClientService.reportExistsForToday("ABC123")).thenReturn(true);
+        when(reportExistsProviderClientService.reportExistsForToday("XYZ789")).thenReturn(false);
+        when(reportExistsProviderClientService.reportExistsForToday("LMN456")).thenReturn(false);
 
         // When
         reportAnalyzerAppl.processParkingDto(parkingDto);
 
         // Then
-        verify(streamBridge, times(1)).send(eq("reportProducerBinding-out-0"), eq(parkingDto));
+        verify(streamBridge, times(1)).send(eq("reportProducerBinding-out-0"), any(ParkingDto.class));
+        verify(reportExistsProviderClientService, times(carNumbers.length)).reportExistsForToday(anyString());
+    }
+
+    @Test
+    void testReportExistsForTodayForCarNumbers() {
+        // Given
+        String[] carNumbers = {"ABC123", "XYZ789", "LMN456"};
+        when(reportExistsProviderClientService.reportExistsForToday("ABC123")).thenReturn(true);
+        when(reportExistsProviderClientService.reportExistsForToday("XYZ789")).thenReturn(false);
+        when(reportExistsProviderClientService.reportExistsForToday("LMN456")).thenReturn(false);
+
+        // When
+        String[] result = reportAnalyzerAppl.reportsNotExistsForTodayForCarNumbers(carNumbers);
+
+        // Then
+        assertArrayEquals(new String[]{"XYZ789", "LMN456"}, result);
+        verify(reportExistsProviderClientService, times(carNumbers.length)).reportExistsForToday(anyString());
     }
 }

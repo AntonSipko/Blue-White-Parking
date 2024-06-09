@@ -27,6 +27,7 @@
         <module>owner-data-provider</module>
         <module>report-data-provider</module>
         <module>report-analyzer</module>
+        <module>report-maker</module>
     </modules>
 
     <dependencyManagement>
