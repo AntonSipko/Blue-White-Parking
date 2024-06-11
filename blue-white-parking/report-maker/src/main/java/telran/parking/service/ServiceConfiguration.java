@@ -14,8 +14,8 @@ public class ServiceConfiguration {
 	String host;
 @Value("${app.report.provider.port:8080}")
 int port;
-@Value("${app.report.provider.path:/owners/get/}")
-String ownersPath;
+@Value("${app.report.provider.path:/owners/getByCarNumber/}")
+String ownersPathByCarNumber ;
 @Value("${app.report.provider.path:/cameras/get/}")
 String camerasPath;
 @Bean

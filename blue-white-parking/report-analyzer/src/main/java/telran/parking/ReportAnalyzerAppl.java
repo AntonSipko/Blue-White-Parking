@@ -19,7 +19,7 @@ import telran.parking.service.ReportExistsProviderClientService;
 public class ReportAnalyzerAppl {
 	final ReportExistsProviderClientService reportExistsProviderClientService;
 	final StreamBridge streamBridge;
-	String producerBindingName= "reportProducerBinding-out-0";
+	String producerBindingName= "reportAnalyzerProducerBinding-out-0";
 	public static void main(String[] args) {
 		SpringApplication.run(ReportAnalyzerAppl.class, args);
 	}
@@ -42,6 +42,7 @@ public class ReportAnalyzerAppl {
 		}
 		public String[] reportsNotExistsForTodayForCarNumbers(String[]carNumers)  {
 			return  (String[]) Arrays.stream(carNumers).filter(carNumber->!reportExistsProviderClientService.reportExistsForToday(carNumber)).toArray(String[]::new);
+			
 		}
 		
 		

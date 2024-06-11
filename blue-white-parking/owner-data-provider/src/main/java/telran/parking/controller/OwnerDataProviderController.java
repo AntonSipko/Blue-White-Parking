@@ -21,16 +21,14 @@ public class OwnerDataProviderController {
 	 @GetMapping(UrlConstants.GET_OWNERS_URL + "{" + UrlConstants.OWNER_ID + "}")
 	public OwnerDto getOwnerData(@PathVariable(UrlConstants.OWNER_ID)  long ownerId) {
 		log.debug("Searching Data for Owner with ID : {}",ownerId);
-		return ownerDataProviderService.getOwnerData(ownerId);
-		
-		
-		
-		
-		
-		
+		return ownerDataProviderService.getOwnerData(ownerId);	
 	}
+	 @GetMapping(UrlConstants.GET_OWNERS_URL + "{" + UrlConstants.CAR_NUMBER + "}")
+		public OwnerDto getOwnerDataByCarNumber(@PathVariable(UrlConstants.CAR_NUMBER)  String carNumber) {
+			log.debug("Searching  OwnerData for Car Number : {}",carNumber);
+			return ownerDataProviderService.getOwnerDataByCarNumber(carNumber);
 
-	
+	 }
 	
 
 }

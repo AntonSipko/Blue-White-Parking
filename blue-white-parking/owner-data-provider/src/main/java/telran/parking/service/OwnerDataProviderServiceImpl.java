@@ -25,6 +25,15 @@ public class OwnerDataProviderServiceImpl implements OwnerDataProviderService {
 	
 		
 	}
+
+	@Override
+	public OwnerDto getOwnerDataByCarNumber(String carNumber) {
+		OwnerData ownerDataByCarNumber=ownerDataRepo.getOwnerDataByCarNumber(carNumber);
+		if(ownerDataByCarNumber==null) {
+			throw new OwnerNotFoundException();
+		}
+		return ownerDataByCarNumber.buid();
+	}
 	
 
 }

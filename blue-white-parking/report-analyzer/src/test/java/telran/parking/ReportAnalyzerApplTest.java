@@ -60,7 +60,7 @@ class ReportAnalyzerApplTest {
         reportAnalyzerAppl.processParkingDto(parkingDto);
 
         // Then
-        verify(streamBridge, times(1)).send(eq("reportProducerBinding-out-0"), any(ParkingDto.class));
+        verify(streamBridge, times(1)).send(eq("reportAnalyzerProducerBinding-out-0"), any(ParkingDto.class));
         verify(reportExistsProviderClientService, times(carNumbers.length)).reportExistsForToday(anyString());
     }
 
