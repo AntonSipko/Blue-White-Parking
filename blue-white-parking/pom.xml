@@ -28,6 +28,7 @@
         <module>report-data-provider</module>
         <module>report-analyzer</module>
         <module>report-maker</module>
+        <module>report-data-writer</module>
     </modules>
 
     <dependencyManagement>
