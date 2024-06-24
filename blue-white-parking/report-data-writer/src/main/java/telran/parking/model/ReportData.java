@@ -10,7 +10,7 @@ import telran.parking.dto.*;
 @AllArgsConstructor(access=AccessLevel.PRIVATE)
 @Getter
 @ToString
-
+@Setter
 public class ReportData {
 	@Id
 	@Column(name="car_number")
@@ -37,6 +37,17 @@ public class ReportData {
 	public ReportDto buid() {
 		return new ReportDto(carNumber,cameraId,cameraAdress,timeStamp,ownerId,ownerEmail,adressFinePrice,fineStatus,ownerName);
 		
+	}
+	public ReportData (ReportDto reportDto) {
+		carNumber=reportDto.carNumber();
+		cameraId=reportDto.cameraId();
+		cameraAdress=reportDto.cameraAdress();
+		adressFinePrice=reportDto.adressFinePrice();
+		fineStatus=reportDto.fineStatus();
+		timeStamp=reportDto.timeStamp();
+		ownerId=reportDto.ownerId();
+		ownerName=reportDto.ownerName();
+		ownerEmail=reportDto.ownerEmail();
 	}
 
 
